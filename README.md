@@ -17,7 +17,6 @@ You can also choose to develop using a normal ROS host machine with ROS 2 Humble
 
 1. use vscode tasks shortcut and choose: `Install Dependencies`
 2. use vscode tasks shortcut and choose: `Build RelWithDebInfo`
-3. type `sourcews` in terminal for sourcing the workspace
 
 ### In normal ros humble installed in host machine
 
@@ -36,13 +35,29 @@ rosdep install --from-path src --ignore-src
 ```
 4. Building
 ```
- colon build
-```
-5. Sourcing the workspace
-```
-source install/setup.bash
+ colon build --sysmlink-install
 ```
 
+
+## Usage 
+
+1) Download gazebo models
+```
+git clone https://github.com/osrf/gazebo_models.git /home/$USERNAME/.gazebo/models
+```
+
+2) Sourcing the workspace
+
+    a) In normal ros installation
+    ```
+    cd workspace
+    source install/setup.bash
+    ```
+    b) In above devcontianer installtion
+    
+    - type `sourcews` in terminal for sourcing the workspace
+
+3) Launching the simulation
 
 ## Project Structure
 
@@ -77,8 +92,13 @@ The butlerbot_gazebo package is responsible for simulating the Butlerbot robot i
 Launch files
 gazebo.launch.py: Launches the Gazebo simulator with the cafe environment and spawns the Butlerbot robot at its home position. The launch file ensures that the robot is correctly placed in the simulation and is ready for tasks such as navigation and interaction with the environment.
 
-### 3) butlerbot_localization 
-The butlerbot_localization package will manage the robot's localization using techniques such as SLAM, ensuring accurate positioning within the café environment.
+### 3) butlerbot_localization
+The butlerbot_localization package is responsible for managing the robot's localization using techniques such as SLAM (Simultaneous Localization and Mapping) and EKF (Extended Kalman Filter). This package ensures accurate positioning of Butlerbot within the café environment, enabling it to navigate and perform tasks reliably.
+
+#### Launch files
+1) **ekf.launch.py**: Launches the Extended Kalman Filter (EKF) node, which fuses sensor data to estimate the robot's pose in the environment. The configuration parameters for this node are defined in the `ekf.yaml` file located in the config directory.
+
+2) **slam.launch.py**: Launches the SLAM algorithm, which allows the robot to build a map of the environment and localize itself within that map simultaneously. The configuration parameters for SLAM are defined in the `mapper_params_online_async.yaml` file located in the config directory.
 
 ### 4) butlerbot_navigation 
 The butlerbot_navigation package will implement the ROS2 Navigation stack (Nav2) for path planning, obstacle avoidance, and autonomous movement of the Butlerbot throughout the café.
