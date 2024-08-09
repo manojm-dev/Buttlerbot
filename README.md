@@ -68,7 +68,14 @@ The butlerbot_description package provides the URDF/XACRO files and launch confi
 3) **visualize.launch.py**: Launches RViz and Rqt visualization tools with configurable parameters. The default parameters are: `use_sim_time:=true`, `use_rviz:=true` and `use_rqt:=false`
 
 ### 2) butlerbot_gazebo
-The butlerbot_gazebo package will include configurations and launch files for simulating the Butlerbot in Gazebo, with realistic physics and sensor simulation.
+The butlerbot_gazebo package is responsible for simulating the Butlerbot robot in a Gazebo environment. It includes the necessary configurations to launch the robot within a simulated cafe environment.
+
+#### Launch files
+
+1) **gazebo.launch.py**: Launches the Gazebo simulator with the cafe environment and spawns the Butlerbot robot at its home position
+
+Launch files
+gazebo.launch.py: Launches the Gazebo simulator with the cafe environment and spawns the Butlerbot robot at its home position. The launch file ensures that the robot is correctly placed in the simulation and is ready for tasks such as navigation and interaction with the environment.
 
 ### 3) butlerbot_localization 
 The butlerbot_localization package will manage the robot's localization using techniques such as SLAM, ensuring accurate positioning within the café environment.

@@ -71,10 +71,10 @@ def generate_launch_description():
         executable='spawn_entity.py',
         name="spawn_entity",
         output='screen',
-        arguments=['-topic', 'robot_description', '-entity',  'butlerbot_1', '-z', '0.5', '-x', '9.0', '-y', '16.0','-timeout', '120.0'],
+        arguments=['-topic', 'robot_description', '-entity', 'butlerbot_1', '-z', '0.5', '-x', '9.0', '-y', '16.0', '-Y', '3.14', '-timeout', '120.0'],
         parameters=[{
             'use_sim_time': use_sim_time
-            }]
+        }]
     )
 
 
