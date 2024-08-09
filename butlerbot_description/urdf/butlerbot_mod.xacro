@@ -3,7 +3,8 @@
   Hexagon stacks
  -->
 <robot name="stack_hexagons" xmlns:xacro="http://ros.org/wiki/xacro">
-    <xacro:include filename="common_properties.xacro" />
+    
+    <xacro:include filename="$(find butlerbot_description)/urdf/common_properties.xacro" />
 
     <xacro:macro name="butlerbot_mod" params="bottom_parent top_parent ">
 
