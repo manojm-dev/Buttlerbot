@@ -16,7 +16,7 @@ def generate_launch_description():
     gazebo_share = FindPackageShare('gazebo_ros').find('gazebo_ros')
 
     # Files paths 
-    default_world_path = os.path.join(pkg_share, 'worlds/cafe.world')
+    default_world_path = os.path.join(pkg_share, 'worlds/french_door_cafe.world')
     extra_models_path = os.path.join(pkg_share, 'models')
 
     # Launch configuration variables with default values 
@@ -75,8 +75,8 @@ def generate_launch_description():
             '-timeout', '120.0',
             '-topic', 'robot_description', 
             '-entity', 'butlerbot_1',
-            '-z', '0.5', '-x', '9.0', '-y', '16.0',
-            '-Y', '3.14'],
+            '-z', '0.5', '-x', '4.0', '-y', '0.4',
+            '-Y', '1.5'],
         parameters=[{
             'use_sim_time': use_sim_time
         }]

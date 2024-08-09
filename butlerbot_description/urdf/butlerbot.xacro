@@ -1,8 +1,8 @@
 <?xml version="1.0"?>
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="butlerbot">
 
-    <xacro:include filename="$(find butlerbot_description)/urdf/common_properties.xacro"/>
-    <xacro:include filename="$(find butlerbot_description)/urdf/butlerbot_properties.xacro"/>
+    <xacro:include filename="$(find butlerbot_description)/urdf/common_properties.xacro" />
+    <xacro:include filename="$(find butlerbot_description)/urdf/butlerbot_properties.xacro" />
 
     <!-- Bases -->
     <xacro:include filename="$(find butlerbot_description)/urdf/butlerbot_kobuki.xacro" />

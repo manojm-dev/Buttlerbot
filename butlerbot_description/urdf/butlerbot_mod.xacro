@@ -3,7 +3,7 @@
   Hexagon stacks
  -->
 <robot name="stack_hexagons" xmlns:xacro="http://ros.org/wiki/xacro">
-    
+
     <xacro:include filename="$(find butlerbot_description)/urdf/common_properties.xacro" />
 
     <xacro:macro name="butlerbot_mod" params="bottom_parent top_parent ">
@@ -12,7 +12,8 @@
             <visual>
                 <origin xyz="0 0 0" rpy="0 0 0" />
                 <geometry>
-                        <mesh filename="package://butlerbot_description/meshes/butlerbot/TOP_colour_1.dae" />
+                    <mesh
+                        filename="package://butlerbot_description/meshes/butlerbot/TOP_colour_1.dae" />
                 </geometry>
             </visual>
             <collision>
@@ -42,7 +43,8 @@
             <visual>
                 <origin xyz="0 0 0" rpy="0 0 0" />
                 <geometry>
-                        <mesh filename="package://butlerbot_description/meshes/butlerbot/BOTTOM_colour_1.dae" />
+                    <mesh
+                        filename="package://butlerbot_description/meshes/butlerbot/BOTTOM_colour_1.dae" />
                 </geometry>
             </visual>
             <inertial>
@@ -102,7 +104,8 @@
             <visual>
                 <origin xyz="0 0 0" rpy="0 0 0" />
                 <geometry>
-                    <mesh filename="package://butlerbot_description/meshes/butlerbot/BOTTOM_mule.dae" />
+                    <mesh
+                        filename="package://butlerbot_description/meshes/butlerbot/BOTTOM_mule.dae" />
                 </geometry>
             </visual>
             <inertial>
