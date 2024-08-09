@@ -12,18 +12,7 @@
             <visual>
                 <origin xyz="0 0 0" rpy="0 0 0" />
                 <geometry>
-                    <xacro:if value="${robot_name_prop == 'butlerbot_1'}">
-                        <mesh
-                            filename="package://butlerbot_description/meshes/butlerbot/TOP_colour_1.dae" />
-                    </xacro:if>
-                    <xacro:if value="${robot_name_prop == 'butlerbot_2'}">
-                        <mesh
-                            filename="package://butlerbot_description/meshes/butlerbot/TOP_colour_2.dae" />
-                    </xacro:if>
-                    <xacro:if
-                        value="${robot_name_prop != 'butlerbot_1' and robot_name_prop != 'butlerbot_2'}">
-                        <mesh filename="package://butlerbot_description/meshes/butlerbot/TOP_colour.dae" />
-                    </xacro:if>
+                        <mesh filename="package://butlerbot_description/meshes/butlerbot/TOP_colour_1.dae" />
                 </geometry>
             </visual>
             <collision>
@@ -53,19 +42,7 @@
             <visual>
                 <origin xyz="0 0 0" rpy="0 0 0" />
                 <geometry>
-                    <xacro:if value="${robot_name_prop == 'butlerbot_1'}">
-                        <mesh
-                            filename="package://butlerbot_description/meshes/butlerbot/BOTTOM_colour_1.dae" />
-                    </xacro:if>
-                    <xacro:if value="${robot_name_prop == 'butlerbot_2'}">
-                        <mesh
-                            filename="package://butlerbot_description/meshes/butlerbot/BOTTOM_colour_2.dae" />
-                    </xacro:if>
-                    <xacro:if
-                        value="${robot_name_prop != 'butlerbot_1' and robot_name_prop != 'butlerbot_2'}">
-                        <mesh
-                            filename="package://butlerbot_description/meshes/butlerbot/BOTTOM_colour.dae" />
-                    </xacro:if>
+                        <mesh filename="package://butlerbot_description/meshes/butlerbot/BOTTOM_colour_1.dae" />
                 </geometry>
             </visual>
             <inertial>
@@ -91,7 +68,7 @@
     <!-- Mule Related -->
     <xacro:macro name="butlerbot_mod_mule" params="bottom_parent top_parent">
 
-        <link name="butlerbot_top_link">
+        <link name="mule_butlerbot_top_link">
             <visual>
                 <origin xyz="0 0 0" rpy="0 0 0" />
                 <geometry>
@@ -114,14 +91,14 @@
             </inertial>
         </link>
 
-        <joint name="butlerbot_top_joint" type="fixed">
+        <joint name="mule_butlerbot_top_joint" type="fixed">
             <origin xyz="0.00364 0.0 0.24583" rpy="0 0 0" />
             <parent link="${top_parent}" />
-            <child link="butlerbot_top_link" />
+            <child link="mule_butlerbot_top_link" />
         </joint>
 
 
-        <link name="butlerbot_bottom_link">
+        <link name="mule_butlerbot_bottom_link">
             <visual>
                 <origin xyz="0 0 0" rpy="0 0 0" />
                 <geometry>
@@ -138,10 +115,10 @@
         </link>
 
 
-        <joint name="butlerbot_bottom_joint" type="fixed">
+        <joint name="mule_butlerbot_bottom_joint" type="fixed">
             <origin xyz="0.001 0.0 0.12" rpy="0 0 0" />
             <parent link="${bottom_parent}" />
-            <child link="butlerbot_bottom_link" />
+            <child link="mule_butlerbot_bottom_link" />
         </joint>
 
 
