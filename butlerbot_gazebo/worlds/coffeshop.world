@@ -51,6 +51,38 @@
       <pose>6.25 0.0 -0.044076 0 0 3.1416</pose>
     </model>
 
+    <model name="reflective_tag_1">
+      <pose>4 -0.20 0.2 0 0 0</pose>
+      <static>1</static>
+      <include>
+        <uri>model://reflective_tag</uri>
+      </include>
+    </model>
+
+    <model name="reflective_tag_2">
+      <pose>0.2 -4.0 0.2 0 0 1.57</pose>
+      <static>1</static>
+      <include>
+        <uri>model://reflective_tag</uri>
+      </include>
+    </model>
+
+    <model name="dock_1">
+      <pose>4 -0.5 0 0 0 0</pose>
+      <static>1</static>
+      <include>
+        <uri>model://trapezium</uri>
+      </include>
+    </model>
+
+    <model name="dock_2">
+      <pose>0.5 -4.0 0.0 0 0 1.57</pose>
+      <static>1</static>
+      <include>
+        <uri>model://trapezium</uri>
+      </include>
+    </model>
+
     <model name="couch">
       <static>1</static>
       <include>
@@ -67,12 +99,12 @@
       <pose>4.5 -0.8 0.0 0 0 0</pose>
     </model>
 
-    <model name="worktop_aluminum">
+    <model name="worktop_aluminium">
       <static>1</static>
       <include>
-        <uri>model://worktop_aluminum</uri>
+        <uri>model://worktop_aluminium</uri>
       </include>
-      <pose>4.0 -2.5 0.0 0 0 0</pose>
+      <pose>4.4 -2.5 0.0 0 0 0</pose>
     </model>
 
     <model name="square_coffee_table">
@@ -245,6 +277,34 @@
     </model>
 
 
+    <!-- <model name="bartender_dispenser_1">
+      <static>1</static>
+      <include>
+        <uri>model://bartender_dispenser</uri>
+      </include>
+      <pose>8.593634 -10.277875 0 0 0 0</pose>
+    </model>
+
+    <model name="portable_cup_2">
+      <static>0</static>
+      <include>
+        <uri>model://portable_cup_2</uri>
+      </include>
+      <pose>8.593634 -10.277875 0.825669 0 0 0</pose>
+    </model>
+
+
+    <model name="table_ingestor_1">
+      <static>1</static>
+      <include>
+        <uri>model://table_ingestor</uri>
+      </include>
+      <pose>10.796878 -10.290632 0 0 0 0</pose>
+    </model> -->
+
+    
+
+
     <light name='user_point_light_2' type='point'>
       <pose frame=''>3.0 -4.5 4.0 0 0 0</pose>
       <diffuse>0.2 0.2 0.2 1</diffuse>
@@ -258,6 +318,12 @@
       <cast_shadows>0</cast_shadows>
       <direction>0 0 -1</direction>
     </light>
+
+
+
+
     
+
+
   </world>
 </sdf>

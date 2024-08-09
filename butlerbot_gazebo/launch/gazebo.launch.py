@@ -16,7 +16,7 @@ def generate_launch_description():
     gazebo_share = FindPackageShare('gazebo_ros').find('gazebo_ros')
 
     # Files paths 
-    default_world_path = os.path.join(pkg_share, 'worlds/empty.world')
+    default_world_path = os.path.join(pkg_share, 'worlds/cafe.world')
     extra_models_path = os.path.join(pkg_share, 'models')
 
     # Launch configuration variables with default values 
@@ -62,32 +62,26 @@ def generate_launch_description():
     )
 
     # Open simulation environment
-    start_gazebo_server = IncludeLaunchDescription(
-        PythonLaunchDescriptionSource(os.path.join(gazebo_share, 'launch', 'gzserver.launch.py')), 
-        launch_arguments={
-            'world': world,
-            'verbose': verbose  
-        }.items()
+    start_gazebo = IncludeLaunchDescription(
+        PythonLaunchDescriptionSource(os.path.join(gazebo_share, 'launch', 'gazebo.launch.py')), 
     )
-    start_gazebo_client = IncludeLaunchDescription(
-        PythonLaunchDescriptionSource(os.path.join(gazebo_share, 'launch', 'gzclient.launch.py'))
-    )
+
     spawn_entity_node = Node(
         package='gazebo_ros', 
         executable='spawn_entity.py',
         name="spawn_entity",
         output='screen',
-        arguments=['-topic', 'robot_description', '-entity',  'butlerbot_2wd', '-z', '0.5', '-x', '0', '-y', '0'],
+        arguments=['-topic', 'robot_description', '-entity',  'butlerbot_1', '-z', '0.5', '-x', '9.0', '-y', '16.0','-timeout', '120.0'],
         parameters=[{
             'use_sim_time': use_sim_time
             }]
     )
 
+
     return LaunchDescription(
         declare_arguments + [
             robot_state_publisher,
-            start_gazebo_server,
-            start_gazebo_client,
+            start_gazebo,
             spawn_entity_node
         ] 
     )

@@ -3,7 +3,8 @@
 
     <xacro:macro name="butlerbot_hokuyo" params="parent x_hok y_hok z_hok robot_name">
 
-        <link name="laser_sensor_link">
+
+        <link name="lidar_link">
             <inertial>
                 <mass value="1e-5" />
                 <origin xyz="0 0 0" rpy="0 0 0" />
@@ -24,22 +25,22 @@
             </visual>
         </link>
 
-        <joint name="laser_sensor_joint" type="fixed">
+        <joint name="laser_joint" type="fixed">
             <origin xyz="${x_hok} ${y_hok} ${z_hok}" rpy="0 0 0" />
             <parent link="${parent}" />
-            <child link="laser_sensor_link" />
+            <child link="lidar_link" />
         </joint>
 
 
-        <gazebo reference="laser_sensor_link">
+        <gazebo reference="lidar_link">
             <sensor name="lidar" type="ray">
                 <always_on>true</always_on>
-                <visualize>false</visualize>
-                <update_rate>20</update_rate>
+                <visualize>true</visualize>
+                <update_rate>5</update_rate>
                 <ray>
                     <scan>
                         <horizontal>
-                            <samples>128</samples>
+                            <samples>360</samples>
                             <resolution>1.000000</resolution>
                             <min_angle>0.000000</min_angle>
                             <max_angle>6.280000</max_angle>
@@ -62,12 +63,11 @@
                         <remapping>~/out:=scan</remapping>
                     </ros>
                     <output_type>sensor_msgs/LaserScan</output_type>
-                    <frame_name>${robot_name}/laser_sensor_link</frame_name>
+                    <frame_name>${robot_name}/laser_link</frame_name>
                 </plugin>
             </sensor>
         </gazebo>
         
     </xacro:macro>
-
 
 </robot>
