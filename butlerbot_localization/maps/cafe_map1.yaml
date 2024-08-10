@@ -1,4 +1,4 @@
-image: sync_map1.pgm
+image: cafe_map1.pgm
 mode: trinary
 resolution: 0.05
 origin: [0.11, 0.0314, 0]

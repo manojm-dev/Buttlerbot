@@ -122,7 +122,6 @@
 	<gazebo reference="imu_link">
 		<sensor name="imu_sensor" type="imu">
 			<ros>
-				<namespace>/butlerbot</namespace>
 				<remapping>~/out:=imu</remapping>
 			  </ros>
 			<plugin filename="libgazebo_ros_imu_sensor.so" name="imu_plugin">
@@ -191,10 +190,6 @@
 
 	<gazebo>
 		<plugin name='diff_drive' filename='libgazebo_ros_diff_drive.so'>
-
-			<ros>
-				<namespace>/butlerbot</namespace>
-			</ros>
 
 			<!-- wheels -->
 			<left_joint>joint_tire_left</left_joint>

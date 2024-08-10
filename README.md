@@ -1,4 +1,5 @@
-# butlerbot
+# Butler Robot
+![alt text](docs/assets/cafe.png)
 
 ## Overview
 
@@ -41,6 +42,8 @@ rosdep install --from-path src --ignore-src
 
 ## Usage 
 
+## Building
+
 1) Download gazebo models
 ```
 git clone https://github.com/osrf/gazebo_models.git /home/$USERNAME/.gazebo/models
@@ -55,9 +58,14 @@ git clone https://github.com/osrf/gazebo_models.git /home/$USERNAME/.gazebo/mode
     ```
     b) In above devcontianer installtion
     
-    - type `sourcews` in terminal for sourcing the workspace
+    - type `sourcews` in terminal for sourcing the workspace or close the terminal and open a new terminal(sourced in .bashrc)
 
-3) Launching the simulation
+## Launching
+### 1) [Complete Launch Setup](docs/complete.md)
+### 2) [Mappping Launch Setup](docs/mapping.md)
+![alt text](docs/assets/mapping.png)
+### 3) [Navigation launch Setup](docs/navigation.md)
+![alt text](docs/assets/navgoal.png)
 
 ## Project Structure
 
@@ -70,7 +78,7 @@ The project is organized into several ROS2 packages, each handling different asp
 
 ## Packages Description
 
-### 1) butlerbot_description
+### **1) butlerbot_description**
 
 The butlerbot_description package provides the URDF/XACRO files and launch configurations for visualizing Butlerbot robot. It includes files to manage robot state publishing, visualization in RViz, and other related tools.
 
@@ -82,26 +90,46 @@ The butlerbot_description package provides the URDF/XACRO files and launch confi
 
 3) **visualize.launch.py**: Launches RViz and Rqt visualization tools with configurable parameters. The default parameters are: `use_sim_time:=true`, `use_rviz:=true` and `use_rqt:=false`
 
-### 2) butlerbot_gazebo
+### **2) butlerbot_gazebo**
 The butlerbot_gazebo package is responsible for simulating the Butlerbot robot in a Gazebo environment. It includes the necessary configurations to launch the robot within a simulated cafe environment.
 
 #### Launch files
 
 1) **gazebo.launch.py**: Launches the Gazebo simulator with the cafe environment and spawns the Butlerbot robot at its home position
 
-Launch files
-gazebo.launch.py: Launches the Gazebo simulator with the cafe environment and spawns the Butlerbot robot at its home position. The launch file ensures that the robot is correctly placed in the simulation and is ready for tasks such as navigation and interaction with the environment.
 
-### 3) butlerbot_localization
+### **3) butlerbot_localization**
 The butlerbot_localization package is responsible for managing the robot's localization using techniques such as SLAM (Simultaneous Localization and Mapping) and EKF (Extended Kalman Filter). This package ensures accurate positioning of Butlerbot within the café environment, enabling it to navigate and perform tasks reliably.
 
-#### Launch files
-1) **ekf.launch.py**: Launches the Extended Kalman Filter (EKF) node, which fuses sensor data to estimate the robot's pose in the environment. The configuration parameters for this node are defined in the `ekf.yaml` file located in the config directory.
+#### Configuration Files
+1) **ekf.yaml**: Configuration for the EKF node, which fuses sensor data to estimate the robot's pose in the environment.
 
-2) **slam.launch.py**: Launches the SLAM algorithm, which allows the robot to build a map of the environment and localize itself within that map simultaneously. The configuration parameters for SLAM are defined in the `mapper_params_online_async.yaml` file located in the config directory.
+2) **localization.yaml**: General localization parameters for Butlerbot.
 
-### 4) butlerbot_navigation 
-The butlerbot_navigation package will implement the ROS2 Navigation stack (Nav2) for path planning, obstacle avoidance, and autonomous movement of the Butlerbot throughout the café.
+3) **mapper_params_online_async.yaml**: Configuration parameters for the asynchronous SLAM algorithm
+
+4) **mapper_params_online_sync.yaml**: Configuration parameters for the synchronous SLAM algorithm.
+
+#### Launch Files
+
+1) **ekf.launch.py****: Launches the EKF node using the parameters defined in ekf.yaml.
+
+2) **slam_online_async.launch.py******: Launches the asynchronous SLAM algorithm using parameters from mapper_params_online_async.yaml.
+
+3) **slam_online_sync.launch.py**: Launches the synchronous SLAM algorithm using parameters from mapper_params_online_sync.yaml.
+
+4) **amcl.launch.py**: Launches the Adaptive Monte Carlo Localization (AMCL) node for probabilistic localization of Butlerbot within a known map.
 
 
+### **4) butlerbot_navigation**
 
+The butlerbot_navigation package implements the Navigation2 stack for Butlerbot, providing capabilities such as path planning, obstacle avoidance, and autonomous movement within the café environment. This package is critical for enabling Butlerbot to navigate from its starting position to specific locations like tables and back to the home position.
+
+#### Configuration Files
+1) ****nav2_params.yaml**: Configuration file for the Navigation2 stack, defining parameters for the planner, controller, recovery behaviors, and other navigation components.
+
+#### Launch Files
+1) **navigation.launch.py**: Launches the Navigation2 stack using the parameters defined in nav2_params.yaml.
+
+
+## [Videos](https://drive.google.com/drive/folders/1xtEoLK6q4JB-CPlg9b8oIdS7F0rFTPDy?usp=drive_link)
