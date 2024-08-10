@@ -61,11 +61,13 @@ git clone https://github.com/osrf/gazebo_models.git /home/$USERNAME/.gazebo/mode
     - type `sourcews` in terminal for sourcing the workspace or close the terminal and open a new terminal(sourced in .bashrc)
 
 ## Launching
-### 1) [Complete Launch Setup](docs/complete.md)
+### 1) [Complete Launch Setup](docs/complete.md) #TODO
 ### 2) [Mappping Launch Setup](docs/mapping.md)
 ![alt text](docs/assets/mapping.png)
 ### 3) [Navigation launch Setup](docs/navigation.md)
 ![alt text](docs/assets/navgoal.png)
+### 4) [OpenRMF launch Setup](docs/openrmf.md)
+![alt text](docs/assets/traffic_editor.png)
 
 ## Project Structure
 
