@@ -5,15 +5,11 @@
 1) Launch simulation
 
 ```
-ros2 launch butlerbot_gazebo gazebo.launch.py 
+ros2 launch butlerbot_gazebo simulation.launch.py 
 ```
 
-2) Launch rviz
-```
-ros2 launch butlerbot_description visualize.launch.py 
-```
 
-3) Edit slam toolbox config and launch slam toolbox
+2) Edit slam toolbox config and launch slam toolbox
 
 - change slam toolbox mode in config file `butlerbot_localization/config/mapper_params_online_async.yaml`
 
@@ -23,7 +19,7 @@ mode: mapping
 
 - and launch it
 ```
-ros2 launch butlerbot_localization slam_online_async.launch.py 
+ros2 launch butlerbot_localization localization.launch.py
 ```
 
 4) Save the map using `SlamToolboxPlugin Panel`

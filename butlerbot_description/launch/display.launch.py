@@ -71,8 +71,10 @@ def generate_launch_description():
 
     # Data visualizations
     start_visualization_tools = IncludeLaunchDescription(
-        PythonLaunchDescriptionSource(os.path.join(
-            pkg_share, 'launch', 'visualize.launch.py'))
+        PythonLaunchDescriptionSource(os.path.join(pkg_share, 'launch', 'visualize.launch.py')),
+        launch_arguments={
+            'use_rqt' : 'true',
+        }.items()
     )
 
     return LaunchDescription(

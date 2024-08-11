@@ -3,6 +3,7 @@ import os
 from launch import LaunchDescription
 from launch.actions import DeclareLaunchArgument, IncludeLaunchDescription
 from launch.substitutions import LaunchConfiguration
+from launch.conditions import IfCondition
 from launch.launch_description_sources import PythonLaunchDescriptionSource
 
 from launch_ros.actions import Node
@@ -13,34 +14,55 @@ def generate_launch_description():
 
     # Packages share directories
     pkg_share = FindPackageShare('butlerbot_localization').find('butlerbot_localization')
-    pkg_slamtb_share = FindPackageShare('slam_toolbox').find('slam_toolbox')
 
-    # File paths
-    slam_config = os.path.join(pkg_share, 'config/mapper_params_online_sync.yaml')
+    # Files paths
+    rviz_config = os.path.join(pkg_share, 'rviz/slam.rviz')
 
     # Launch configuration 
     use_sim_time = LaunchConfiguration('use_sim_time')
+    use_rviz = LaunchConfiguration('use_rviz')
 
     # Launch Arguments 
     declare_arguments = [
+
         DeclareLaunchArgument(
             name='use_sim_time',
             default_value='false',
             choices=['true', 'false'],
             description='Use Simulation(Gazebo) Clock'
         ),
+        
+        DeclareLaunchArgument(
+            name='use_rviz',
+            default_value='true',
+            choices=['true', 'false'],
+            description='Use Rviz Visualization tool'
+        ),
     ]
 
     start_slamtb = IncludeLaunchDescription(
-        PythonLaunchDescriptionSource(os.path.join(pkg_slamtb_share, 'launch', 'online_sync_launch.py')), 
+        PythonLaunchDescriptionSource(os.path.join(pkg_share, 'launch', 'slam_online_async.launch.py')), 
         launch_arguments={
-            'slam_params_file': slam_config,
             'use_sim_time': use_sim_time
             }.items()
     )
 
+    # Start RViz
+    start_rviz = Node(
+        package='rviz2',
+        executable='rviz2',
+        name='rviz2',
+        output='screen',
+        arguments=['-d', rviz_config],
+        parameters=[{
+            'use_sim_time': True
+        }],
+        condition=IfCondition(use_rviz)
+    )
+
     return LaunchDescription(
         declare_arguments + [
-            start_slamtb
+            start_slamtb,
+            start_rviz
         ]
     )

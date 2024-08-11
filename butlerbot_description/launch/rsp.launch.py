@@ -17,12 +17,8 @@ def generate_launch_description():
     # File paths
     default_model_path = os.path.join(pkg_share, 'urdf/butlerbot.xacro')
 
-    # Launch configuration variables (used to modify at launch time)
+    # Launch configuration variables
     use_sim_time = LaunchConfiguration('use_sim_time')
-    use_gazebo = LaunchConfiguration('use_gazebo')
-    use_gzsim = LaunchConfiguration('use_gzsim')
-
-    # Launch configuration with file paths (used to modify at launch time)
     urdf_model = LaunchConfiguration('urdf_model')
 
     # Default launch configuration arguments
@@ -32,23 +28,12 @@ def generate_launch_description():
             default_value=default_model_path,
             description='Absolute path of robot URDF file'
         ),
+
         DeclareLaunchArgument(
             name='use_sim_time',
             default_value='true',
             choices=['true', 'false'],
             description='Use Simulation(Gazebo) Clock'
-        ),
-        DeclareLaunchArgument(
-            name='use_gazebo',
-            default_value='true',
-            choices=['true', 'false'],
-            description='Use Gazebo classic'
-        ),
-        DeclareLaunchArgument(
-            name='use_gzsim',
-            default_value='false',
-            choices=['true', 'false'],
-            description='Use Gazebo Sim'
         ),
     ]
 
@@ -61,9 +46,7 @@ def generate_launch_description():
         parameters=[{
             'use_sim_time': use_sim_time,
             'robot_description': Command([
-                'xacro ',           urdf_model,
-                ' use_gazebo:=',    use_gazebo,
-                ' use_gzsim:=',     use_gzsim
+                'xacro ', urdf_model
             ])
         }]
     )
