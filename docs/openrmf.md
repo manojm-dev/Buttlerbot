@@ -19,4 +19,9 @@ ros2 run rmf_building_map_tools building_map_generator gazebo cafe.building.yaml
 
 ## 3) Creating a launch file to view this world in gazebo
 
+- Launch the world generated using traffic editor
+```
+ros2 launch butlerbot_rmf_gazebo simulation.launch.py 
+```
+
 ![alt text](assets/rmf_gazebo_world.png)
