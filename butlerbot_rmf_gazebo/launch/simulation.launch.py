@@ -10,7 +10,7 @@ from launch_ros.substitutions import FindPackageShare, FindPackagePrefix
 
 def generate_launch_description():
 
-    world_name = 'cafe'
+    map_name = 'cafe'
     ros_base_path = '/opt/ros/' + os.environ['ROS_DISTRO']
 
     pkg_share = FindPackageShare('butlerbot_rmf_gazebo').find('butlerbot_rmf_gazebo')
@@ -25,14 +25,15 @@ def generate_launch_description():
     # rmf_building_sim_gz_plugins = FindPackagePrefix('rmf_building_sim_gz_plugins').find('rmf_building_sim_gz_plugins')
 
     # File paths
-    world_path = os.path.join(pkg_share, 'maps', world_name, f'{world_name}.world')
-    world_models_path = os.path.join(pkg_share, 'maps', world_name, 'models')
+    world_path = os.path.join(pkg_share, 'maps', map_name, f'{map_name}.world')
+    world_models_path = os.path.join(pkg_share, 'maps', map_name, 'models')
     models_path = os.path.join(pkg_share, 'models')
-    print(models_path)
 
     # Launch configuration variables with default values 
     use_sim_time = LaunchConfiguration('use_sim_time')
     world = LaunchConfiguration('world')
+    map_name = LaunchConfiguration('map_name')
+   
 
     declare_arguments = [
         DeclareLaunchArgument(
@@ -42,13 +43,16 @@ def generate_launch_description():
         ),
         DeclareLaunchArgument(
             name='world',
-            default_value=world_path, 
             description='Absolute path of gazebo WORLD file'
+        ),
+        DeclareLaunchArgument(
+            name='map_name',
+            description='Absolute path of gazebo WORLD file'   
         ),
     ]
 
     if 'GAZEBO_MODEL_PATH' in os.environ:
-        os.environ['GAZEBO_MODEL_PATH'] = os.environ['GAZEBO_MODEL_PATH'] + ':' + world_models_path + ':' + models_path 
+        os.environ['GAZEBO_MODEL_PATH'] = os.environ['GAZEBO_MODEL_PATH'] + ':'+ world_models_path + ':' + models_path
     else:
         os.environ['GAZEBO_MODEL_PATH'] = world_models_path + ':' + models_path 
 
@@ -57,8 +61,8 @@ def generate_launch_description():
     else:
         os.environ['GAZEBO_PLUGIN_PATH'] = rmf_robot_sim_gz_classic_plugins + ':' + rmf_building_sim_gz_classic_plugins
 
-    print("GAZEBO MODELS PATH=="+str(os.environ["GAZEBO_MODEL_PATH"]))
-    print("GAZEBO PLUGINS PATH=="+str(os.environ["GAZEBO_PLUGIN_PATH"]))
+    # print("GAZEBO MODELS PATH=="+str(os.environ["GAZEBO_MODEL_PATH"]))
+    # print("GAZEBO PLUGINS PATH=="+str(os.environ["GAZEBO_PLUGIN_PATH"]))
 
 
     # Open simulation environment

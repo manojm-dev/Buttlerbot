@@ -3,8 +3,8 @@ project(butlerbot_rmf_gazebo)
 
 find_package(ament_cmake REQUIRED)
 
-install(DIRECTORY
-  launch maps models
+install(
+  DIRECTORY launch maps models
   DESTINATION share/${PROJECT_NAME}
 )
 
